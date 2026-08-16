@@ -15,9 +15,9 @@ def menu_logo():
 
 while True:
     cpu_uso = psutil.cpu_percent(interval=1)
+    cpu_freq = psutil.cpu_freq(percpu=True)
     cpu_fisica = psutil.cpu_count(logical=False)
     cpu_logica = psutil.cpu_count(logical=True)
-    cpu_freq = psutil.cpu_freq(percpu=True)
 
     memoria = psutil.virtual_memory()
     ram_uso = memoria.percent
@@ -30,8 +30,10 @@ while True:
     menu_logo()
 
     print(f"Uso da CPU: {cpu_uso:.1f}%")
+    
     for i, freq in enumerate(cpu_freq):
         print(f"CPU {i}: {freq.current / 1000:.2f} GHz")
+        
     print(f"Núcleos físicos: {cpu_fisica}")
     print(f"Núcleos lógicos: {cpu_logica}")
 
